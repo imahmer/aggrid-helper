@@ -1,0 +1,60 @@
+@import url('../src/assets/fonts/icons/all.css');
+@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
+@import "~bootstrap/dist/css/bootstrap.min.css";
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/**
+ ****************************
+ * Variables
+ ****************************
+*/
+:root {
+  --ima-primary-color-5: #d8d8d8;
+  --ima-primary-color-6: #f4f7f8;
+  --ima-primary-color-7: #f0f1f1;
+}
+
+
+/**
+ ****************************
+ * Override AG-Grid styles
+ ****************************
+*/
+
+.ag-theme-alpine {
+  font-family: 'Inter', sans-serif;
+}
+
+.ag-theme-alpine .ag-root-wrapper {
+  border: none;
+}
+
+.ag-theme-alpine .ag-header {
+  background-color: var(--ima-primary-color-7);
+  border-top: solid 1px;
+  border-top-color: var(--ima-primary-color-5);
+  border-bottom-color: var(--ima-primary-color-5);
+}
+
+.ag-theme-alpine .ag-row-odd {
+  background-color: transparent;
+}
+
+.ag-theme-alpine .ag-row-hover {
+  background-color: var(--ima-primary-color-6);
+}

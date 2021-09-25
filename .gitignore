@@ -1,0 +1,61 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/dist-server
+/tmp
+/out-tsc
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# e2e
+/src/omnival-clientApp/e2e/*.js
+/src/omnival-clientApp/e2e/*.map
+
+/src/omnival-adminApp/e2e/*.js
+/src/omnival-adminApp/e2e/*.map
+
+# System Files
+.DS_Store
+Thumbs.db
+**/node_modules
+**/*.js.map
+**/*.js
+**/bin
+**/obj
+**/wwwroot
+Logs
+.vs/
+/.vs
+/src/Database/Database.jfm
+/src/Database/Database.dbmdl
+src/omnival-adminApp/dist
+src/omnival-clientApp/dist
+src/omnival-vendorApp/dist
+src/omnival-clientApp/dist.zip
+src/omnival-adminApp/dist.zip
+src/omnival-vendorApp/dist.zip
