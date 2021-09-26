@@ -4,17 +4,19 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SharedModule } from './shared/shared.module';
+import { AgGridModule } from 'ag-grid-angular';
+import { AgGridComponent } from './shared/components/ag-grid/ag-grid.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AgGridComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    SharedModule
+    AgGridModule.withComponents([])
   ],
   providers: [],
   bootstrap: [AppComponent]

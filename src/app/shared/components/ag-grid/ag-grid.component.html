@@ -1,4 +1,9 @@
-<ag-grid-angular
+<ng-template [ngIf]="gridOptions !== undefined">
+  <ag-grid-angular
+    style="width: 100%; height: calc(100vh - 200px);" 
     class="ag-theme-alpine"
+    [modules]="modules"
     [gridOptions]="gridOptions"
+    (gridReady)="onGridReady($event)"
   ></ag-grid-angular>
+</ng-template>

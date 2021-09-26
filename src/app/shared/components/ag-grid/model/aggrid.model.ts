@@ -13,6 +13,8 @@ export abstract class AgGridDatasource {
 
     refreshColumns(): void {
         if (this._gridApi) {
+            console.log(`Getting input columns inside datasource here`)
+            console.log(this.createColumns())
             this._gridApi.setColumnDefs(this.createColumns());
         }
     }

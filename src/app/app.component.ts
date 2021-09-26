@@ -7,14 +7,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ag-grid-angular-helper';
-  columns: any[];
-  rowData = [{}];
+  columns = [];
+  rowData = [];
+  gridOptions;
   constructor() {
     this.columns = [{
       flex: 1,
       headerName: "LOAN NO",
-      rowGroup: true,
-      hide: true,
+      // rowGroup: true,
+      // hide: true,
       field: "loanNumber",
     },
     {
@@ -44,11 +45,17 @@ export class AppComponent {
       headerName: "BRANCH",
       field: "branchName",
     }];
-    
+
     for (let index = 0; index < 100; index++) {
-      setTimeout(() => {
-        this.rowData.push({loanNumber: '123',loanId: 'OVM123',propertyAddress: 'loreum ispum dore',borrowerName: 'Ahmer',vendorName: 'UBL', branchName: 'I I Chundgrigar'})
-      }, 500);
+      this.rowData.push({loanNumber: `xyz${index}`,loanId: 'OVM123',propertyAddress: 'loreum ispum dore',borrowerName: 'Ahmer',vendorName: 'UBL', branchName: 'I I Chundgrigar'})
     }
+    
+
+    this.gridOptions =  {
+      rowModelType: 'serverSide',
+      serverSideStoreType: 'partial',
+      domLayout: "autoHeight",
+      columnDefs: this.columns,
+     };
   }
 }

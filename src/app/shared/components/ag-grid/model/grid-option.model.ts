@@ -8,10 +8,11 @@ export const DEFAULT_GRID_OPTIONS: GridOptions = {
         minWidth: 100,
         resizable: true,
     },
-    rowData: null,
-    suppressDragLeaveHidesColumns: true,
-    suppressNoRowsOverlay: false,
-    suppressLoadingOverlay: false,
+    maxConcurrentDatasourceRequests: 1,
+    cacheBlockSize: 20,
+    // suppressDragLeaveHidesColumns: true,
+    // suppressNoRowsOverlay: false,
+    // suppressLoadingOverlay: false,
     // loadingOverlayComponent: 'customLoadingOverlayComponent',
     // noRowsOverlayComponent: 'customNoRowsOverlayComponent'
 }

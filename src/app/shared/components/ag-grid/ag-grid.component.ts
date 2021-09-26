@@ -1,49 +1,47 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 
-import { AbstractColDef, ColumnApi, GridOptions, IDatasource, IGetRowsParams, Module } from '@ag-grid-community/core';
+
+import { AbstractColDef, ColumnApi, GridApi, GridOptions, IDatasource, IGetRowsParams, IServerSideDatasource, IServerSideGetRowsParams, Module } from '@ag-grid-community/core';
 import { ServerSideRowModelModule } from '@ag-grid-enterprise/server-side-row-model';
-import { AgGridDatasource } from './model/aggrid.model';
+import { DEFAULT_GRID_OPTIONS } from "./model/grid-option.model";
 
 @Component({
   selector: 'ag-grid',
   templateUrl: './ag-grid.component.html',
   styleUrls: ['./ag-grid.component.css']
 })
-export class AgGridComponent extends AgGridDatasource implements OnInit {
-  @Input() columns: AbstractColDef[];
-  @Input() datasource: any[];
+export class AgGridComponent implements AfterViewInit {
+  @Input() datasource = [];
+  @Input() customGridOptions: GridOptions;
   modules: Module[] = [ServerSideRowModelModule];
-  rowCount?: number;
+  private _defaultGridOptions: GridOptions = DEFAULT_GRID_OPTIONS;
+  private _gridApi: GridApi;
+  private _gridColumnApi: ColumnApi;
+  gridOptions: GridOptions;
 
-  protected constructor(gridOptions: GridOptions) {
-    super(Object.assign({},{
-      rowModelType: 'infinite',
-      pagination: false,
-      rowSelection: 'none',
-      suppressCellSelection: true,
-      cacheBlockSize: 100,
-     },gridOptions));
+  constructor() {
   }
 
-  createColumns() {
-    console.log(`Getting input columns here`)
-    console.log(this.columns)
-    return this.columns;
+  ngAfterViewInit(): void {
+    this.loadData();
   }
 
-  ngOnInit() {
-    this.gridOptions.datasource = this.dataSource;
-    this.createColumns();
-    this.refreshColumns();
+  onGridReady(params): void {
+    this._gridApi = params.api;
+    this._gridApi.setServerSideDatasource(this.createServerSideDatasource());
   }
 
-  dataSource: IDatasource = { 
-    getRows(params: IGetRowsParams): void {
-      setTimeout(() => {
-        console.log(`Getting updated input rows here`)
-        console.log(this.datasource)
-        params.successCallback(this.datasource, -1);
-      }, 200);
+  createServerSideDatasource() {
+    var self = this;
+    return {
+      getRows(params: IServerSideGetRowsParams) {
+        console.log(`Start Row: ${params.request.startRow}, End Row: ${params.request.endRow}`)
+        params.successCallback(self.datasource, 150);
+      }
     }
+  }
+
+  loadData() {
+    this.gridOptions = Object.assign({}, this._defaultGridOptions, this.customGridOptions);
   }
 }
